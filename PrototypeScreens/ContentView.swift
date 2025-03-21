@@ -43,35 +43,36 @@ struct ContentView: View {
                 }
             }
             .navigationDestination(for: Category.self) { category in
-                List {
-                    ForEach(category.items, id: \.name) {
-                        item in HStack {
-                            Text(item.name)
-                            Spacer()
-                            Text("x\(item.quantity)")
-                            Text(String(format: "$%.2f", item.price * Float(item.quantity)))
+                VStack {
+                    List {
+                        ForEach(category.items, id: \.name) {
+                            item in HStack {
+                                Text(item.name)
+                                Spacer()
+                                Text("x\(item.quantity)")
+                                Text(String(format: "$%.2f", item.price * Float(item.quantity)))
+                            }
                         }
                     }
+                    // Tax calc display
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Cost Before Taxes: \(String(format: "$%.2f", totalBeforeTax))")
+                            .font(.subheadline)
+                        Text("Cost After Taxes: \(String(format: "$%.2f", totalAfterTax))")
+                            .font(.subheadline)
+                            .bold()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 }
                 .onAppear {
                     calculateTotals(for: category)
                 }
             }
-                
-            // Tax calc display
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Cost Before Taxes: \(String(format: "$%.2f", totalBeforeTax))")
-                    .font(.subheadline)
-                Text("Cost After Taxes: \(String(format: "$%.2f", totalAfterTax))")
-                    .font(.subheadline)
-                    .bold()
-            }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            .padding(.horizontal)
-            .padding(.bottom)
         }
     }
     
