@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ItemsListView: View {
+    
+    @Binding var currentCategory: Category
+    
     var body: some View {
         NavigationLink (destination: AddItemView()) {
             Text("Add Item")
@@ -17,6 +20,6 @@ struct ItemsListView: View {
 
 struct ItemsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemsListView()
+        ItemsListView(currentCategory: <#Binding<Category>#>)
     }
 }
