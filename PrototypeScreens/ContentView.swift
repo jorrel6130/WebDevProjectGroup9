@@ -32,8 +32,10 @@ struct ContentView: View {
             .navigationDestination(for: Category.self) { category in
                 List {
                     ForEach(category.items, id: \.name) {
-                        item in NavigationLink(value: item) {
+                        item in HStack {
                             Text(item.name)
+                            Text(String(format:"x", item.quantity))
+                            Text(String(format:"($",(item.price * Float(item.quantity)),")"))
                         }
                     }
                 }
