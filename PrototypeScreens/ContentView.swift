@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  PrototypeScreens
-//
-//  Created by Jorrel Tigbayan on 2025-03-20.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -15,11 +8,6 @@ struct ContentView: View {
     @State private var taxRate: Float = 0.13
     
     var body: some View {
-        //      NavigationView {
-        //            NavigationLink (destination: ItemsListView()) {
-        //                Text("Items List")
-        //            }
-        //        }
         NavigationStack(path: $path) {
             HStack {
                 Spacer()
